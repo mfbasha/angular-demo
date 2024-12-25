@@ -1,13 +1,14 @@
 import { Component, signal,computed, Input,input, EventEmitter, Output,output } from '@angular/core';
 import { DUMMY_USERS } from '../../data/dummy-users';
 import { single } from 'rxjs';
-import { IUser } from '../../models/user';
+import { type IUser } from '../../models/user.model';
+import { CardComponent } from '../shared/card/card.component';
 
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [CardComponent],
   standalone: true,
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
@@ -25,8 +26,9 @@ export class UserComponent {
   // id = input.required<string>();
   // avatar=input.required<string>();
   // name=input.required();
-  user =input.required<IUser>();
-  select=output<string>();
+  user = input.required<IUser>();
+  selected = input.required<boolean>();
+  select = output<string>();
   // @Output()select = new  EventEmitter<string>();
   // selectedAvatar = signal(this.avatar);
   // selectedName = signal(this.name);

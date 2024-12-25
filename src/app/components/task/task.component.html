@@ -2,15 +2,19 @@
  <header>
    <h2>{{username()}}'s Tasks</h2>
   <menu>
-    <button (click)="addTask()">Add Task</button>
+    <button (click)="onAddNewTask()" >Add Task</button>
   </menu>
  </header>
- <ul>
-   @for(task of userTasks(); track task.id) {
+@if(isAddingTask) {
+  <app-add-task [userId]="userId()!" [userName]="username()" (close)="onCancelAddTask()" ></app-add-task>
+}@else {
+   <ul>
+   @for(task of userTasksProp; track task.id) {
      <li>
-       <app-task-item [userTask]="task" (select)="onTaskSelected($event)"></app-task-item>
+       <app-task-item [userTask]="task" ></app-task-item>
      </li>
    }
  </ul>
+}
 </section>
 
